@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.githang.loginterceptor.app.MainActivity">
+    tools:context="com.parkingwang.loginterceptor.app.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"

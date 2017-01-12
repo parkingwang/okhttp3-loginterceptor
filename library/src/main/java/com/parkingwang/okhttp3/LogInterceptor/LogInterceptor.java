@@ -1,4 +1,4 @@
-package com.githang.okhttp.LogInterceptor;
+package com.parkingwang.okhttp3.LogInterceptor;
 
 import org.json.JSONException;
 import org.json.JSONObject;

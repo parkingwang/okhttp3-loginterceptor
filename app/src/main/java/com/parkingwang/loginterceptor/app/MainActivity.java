@@ -1,9 +1,9 @@
-package com.githang.loginterceptor.app;
+package com.parkingwang.loginterceptor.app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.githang.okhttp.LogInterceptor.LogInterceptor;
+import com.parkingwang.okhttp3.LogInterceptor.LogInterceptor;
 
 import java.io.IOException;
 
