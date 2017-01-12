@@ -40,8 +40,8 @@ public class LogInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         final int id = ID_GENERATOR.incrementAndGet();
-        String LOG_PREFIX = "[" + id + " request]";
         {
+            final String LOG_PREFIX = "[" + id + " request]";
             RequestBody requestBody = request.body();
             boolean hasRequestBody = requestBody != null;
 
@@ -96,18 +96,18 @@ public class LogInterceptor implements Interceptor {
             }
         }
 
-        LOG_PREFIX = "[" + id + " response]";
-        long startNs = System.nanoTime();
-        Response response;
-        try {
-            response = chain.proceed(request);
-        } catch (Exception e) {
-            logger.log(LOG_PREFIX + "<-- HTTP FAILED: " + e);
-            throw e;
-        }
-        long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
-
         {
+            final String LOG_PREFIX = "[" + id + " response]";
+            long startNs = System.nanoTime();
+            Response response;
+            try {
+                response = chain.proceed(request);
+            } catch (Exception e) {
+                logger.log(LOG_PREFIX + "<-- HTTP FAILED: " + e);
+                throw e;
+            }
+            long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
+
             ResponseBody responseBody = response.body();
             long contentLength = responseBody.contentLength();
             logger.log(LOG_PREFIX + "<-- " + response.code() + ' ' + response.message() + ' ' + response.request().url() + " (" + tookMs + "ms" + "" + ')');
@@ -147,16 +147,18 @@ public class LogInterceptor implements Interceptor {
                 if (contentLength != 0) {
                     final String bufferString = buffer.clone().readString(charset);
                     logger.log(LOG_PREFIX + bufferString);
-                    try {
-                        logger.log(LOG_PREFIX + "\n" + new JSONObject(bufferString).toString(INDENT_SPACES));
-                    } catch (JSONException ignored) {
+                    if (contentType != null && "json".equals(contentType.subtype())) {
+                        try {
+                            logger.log(LOG_PREFIX + "\n" + new JSONObject(bufferString).toString(INDENT_SPACES));
+                        } catch (JSONException ignored) {
+                        }
                     }
                 }
 
                 logger.log(LOG_PREFIX + "<-- END HTTP (" + buffer.size() + "-byte body)");
             }
+            return response;
         }
-        return response;
     }
 
     static boolean isPlaintext(Buffer buffer) {
