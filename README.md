@@ -19,7 +19,7 @@ OkHttpClient okHttpClient = new OkHttpClient.Builder()
         .addInterceptor(new LogInterceptor()).build();
 ```
 
-## What's the different with OkHttp-LogginInterceptor?
+## What's it different from OkHttp-LogginInterceptor?
 
 #### Show request and response id
 
