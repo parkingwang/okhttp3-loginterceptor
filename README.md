@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/msdx/maven/OkHttp3-LogInterceptor/images/download.svg) ](https://bintray.com/msdx/maven/OkHttp3-LogInterceptor/_latestVersion)
+
 OkHttp3 LogInterceptor
 ===
 
@@ -7,8 +9,14 @@ An android log interceptor for okhttp3.
 
 Gradle dependency:
 
-```gradle
-compile 'com.githang:okhttp3-loginterceptor:0.1'
+```groovy
+compile 'com.githang:okhttp3-loginterceptor:latest.integration'
+```
+
+Java code:
+```java
+OkHttpClient okHttpClient = new OkHttpClient.Builder()
+        .addInterceptor(new LogInterceptor()).build();
 ```
 
 ## What's the different with OkHttp-LogginInterceptor?
