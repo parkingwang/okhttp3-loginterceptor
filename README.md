@@ -10,7 +10,7 @@ An android log interceptor for okhttp3.
 Gradle dependency:
 
 ```groovy
-compile 'com.parkingwang:okhttp3-loginterceptor:latest.integration'
+compile 'com.githang:okhttp3-loginterceptor:latest.integration'
 ```
 
 Java code:
