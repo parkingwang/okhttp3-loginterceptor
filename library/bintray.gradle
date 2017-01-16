@@ -6,14 +6,8 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
 task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
+    from sourceSets.main.java.srcDirs
     classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += configurations.compile
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -43,9 +37,9 @@ install {
             name PROJ_NAME
             description PROJ_DESCRIPTION
             url PROJ_WEBSITEURL
-            inceptionYear '2016'
+            inceptionYear '2017'
 
-            packaging 'aar'
+            packaging 'jar'
             groupId PROJ_GROUP
             artifactId PROJ_ARTIFACTID
             version PROJ_VERSION
