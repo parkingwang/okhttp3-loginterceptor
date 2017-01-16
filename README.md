@@ -3,7 +3,7 @@
 OkHttp3 LogInterceptor
 ===
 
-An android log interceptor for okhttp3.
+A log interceptor for OkHttp3.
 
 ##How to use?
 
