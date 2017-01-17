@@ -93,5 +93,6 @@ bintray {
                 sign = true
             }
         }
+        userOrg = 'parkingwang'
     }
 }

@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/msdx/maven/OkHttp3-LogInterceptor/images/download.svg) ](https://bintray.com/msdx/maven/OkHttp3-LogInterceptor/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/parkingwang/maven/OkHttp3-LogInterceptor/images/download.svg) ](https://bintray.com/parkingwang/maven/OkHttp3-LogInterceptor/_latestVersion)
 
 OkHttp3 LogInterceptor
 ===
@@ -10,7 +10,7 @@ A log interceptor for OkHttp3.
 Gradle dependency:
 
 ```groovy
-compile 'com.githang:okhttp3-loginterceptor:latest.integration'
+compile 'com.parkingwang:okhttp3-loginterceptor:latest.integration'
 ```
 
 Java code:
