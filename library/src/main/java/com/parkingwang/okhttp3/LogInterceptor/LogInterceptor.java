@@ -87,6 +87,12 @@ public class LogInterceptor implements Interceptor {
                 if (isPlaintext(buffer)) {
                     final String bufferString = buffer.readString(charset);
                     logger.log(LOG_PREFIX + bufferString);
+                    if (contentType != null && "json".equals(contentType.subtype())) {
+                        try {
+                            logger.log(LOG_PREFIX + "\n" + new JSONObject(bufferString).toString(INDENT_SPACES));
+                        } catch (JSONException ignored) {
+                        }
+                    }
                     logger.log(LOG_PREFIX + "--> END " + request.method()
                             + " (" + requestBody.contentLength() + "-byte body)");
                 } else {
