@@ -7,6 +7,8 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -27,14 +29,22 @@ import okio.BufferedSource;
 public class LogInterceptor implements Interceptor {
     private static final int INDENT_SPACES = 4;
     private static final Charset UTF8 = Charset.forName("UTF-8");
-    private final Logger logger = new Logger() {
-        @Override
-        public void log(String message) {
-            Platform.get().log(Platform.WARN, message, null);
-        }
-    };
 
     private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
+
+    private final Logger logger;
+
+    public LogInterceptor() {
+        this(false);
+    }
+
+    public LogInterceptor(boolean serial) {
+        if (serial) {
+            logger = Serial.SERIAL;
+        } else {
+            logger = Logger.DEFAULT;
+        }
+    }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -194,5 +204,28 @@ public class LogInterceptor implements Interceptor {
 
     interface Logger {
         void log(String message);
+
+        Logger DEFAULT = new Logger() {
+            @Override
+            public void log(String message) {
+                Platform.get().log(Platform.WARN, message, null);
+            }
+        };
+    }
+
+    private static class Serial {
+        private static Executor SERIAL_POOL = Executors.newSingleThreadExecutor();
+
+        static final Logger SERIAL = new Logger() {
+            @Override
+            public void log(final String message) {
+                SERIAL_POOL.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        Platform.get().log(Platform.WARN, message, null);
+                    }
+                });
+            }
+        };
     }
 }
