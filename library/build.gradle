@@ -21,7 +21,12 @@ sourceSets.test.compileClasspath += configurations.providedCompile
 sourceSets.test.runtimeClasspath += configurations.providedCompile
 
 dependencies {
+    testCompile 'junit:junit:4.12'
+
     providedCompile 'org.json:json:20160810'
+    providedCompile 'com.google.code.gson:gson:2.8.0'
+    providedCompile 'com.alibaba:fastjson:1.2.31'
+//    providedCompile 'com.alibaba:fastjson:1.1.56.android'
     compile 'com.squareup.okhttp3:okhttp:3.4.0'
 }
 

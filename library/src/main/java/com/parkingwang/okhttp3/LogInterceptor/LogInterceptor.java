@@ -1,7 +1,6 @@
 package com.parkingwang.okhttp3.LogInterceptor;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.parkingwang.okhttp3.LogInterceptor.formatter.JSONFormatter;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -88,10 +87,7 @@ public class LogInterceptor implements Interceptor {
                     final String bufferString = buffer.readString(charset);
                     logger.log(LOG_PREFIX + bufferString);
                     if (contentType != null && "json".equals(contentType.subtype())) {
-                        try {
-                            logger.log(LOG_PREFIX + "\n" + new JSONObject(bufferString).toString(INDENT_SPACES));
-                        } catch (JSONException ignored) {
-                        }
+                        logger.log(LOG_PREFIX + "\n" + JSONFormatter.formatJSON(bufferString));
                     }
                     logger.log(LOG_PREFIX + "--> END " + request.method()
                             + " (" + requestBody.contentLength() + "-byte body)");
@@ -154,10 +150,7 @@ public class LogInterceptor implements Interceptor {
                     final String bufferString = buffer.clone().readString(charset);
                     logger.log(LOG_PREFIX + bufferString);
                     if (contentType != null && "json".equals(contentType.subtype())) {
-                        try {
-                            logger.log(LOG_PREFIX + "\n" + new JSONObject(bufferString).toString(INDENT_SPACES));
-                        } catch (JSONException ignored) {
-                        }
+                        logger.log(LOG_PREFIX + "\n" + JSONFormatter.formatJSON(bufferString));
                     }
                 }
 
