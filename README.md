@@ -1,11 +1,12 @@
 [ ![Download](https://api.bintray.com/packages/parkingwang/maven/OkHttp3-LogInterceptor/images/download.svg) ](https://bintray.com/parkingwang/maven/OkHttp3-LogInterceptor/_latestVersion)
+<a href="http://www.methodscount.com/?lib=com.parkingwang%3Aokhttp3-loginterceptor%3A0.3"><img src="https://img.shields.io/badge/Methods%20and%20size-87%20|%2010%20KB-e91e63.svg"/></a>
 
 OkHttp3 LogInterceptor
 ===
 
 A log interceptor for OkHttp3.
 
-##How to use?
+## How to use?
 
 Gradle dependency:
 
