@@ -12,7 +12,7 @@ public class JSONFormatterTest {
 
     @Test
     public void testJSONFormatter() {
-        System.out.println(com.parkingwang.okhttp3.LogInterceptor.formatter.JSONFormatter.formatJSON("{\"key\":\"value\",\"object\": {\"name\":\"value\",\"age\":\"1\"}}"));
-        System.out.println(com.parkingwang.okhttp3.LogInterceptor.formatter.JSONFormatter.FORMATTER.getClass());
+        System.out.println(JSONFormatter.formatJSON("{\"key\":\"value\",\"object\": {\"name\":\"value\",\"age\":\"1\"}}"));
+        System.out.println(JSONFormatter.FORMATTER.getClass());
     }
 }

@@ -38,6 +38,11 @@ public class JSONFormatter {
             return fastjsonFormatter;
         }
 
+        JSONFormatter moshiFormatter = MoshiFormatter.buildIfSupported();
+        if (moshiFormatter != null) {
+            return moshiFormatter;
+        }
+
         return new JSONFormatter();
     }
 }

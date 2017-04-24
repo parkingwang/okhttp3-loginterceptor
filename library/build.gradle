@@ -13,21 +13,19 @@ apply plugin: 'java'
 sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
-configurations {
-    providedCompile
-}
-sourceSets.main.compileClasspath += configurations.providedCompile
-sourceSets.test.compileClasspath += configurations.providedCompile
-sourceSets.test.runtimeClasspath += configurations.providedCompile
-
 dependencies {
     testCompile 'junit:junit:4.12'
 
-    providedCompile 'org.json:json:20160810'
-    providedCompile 'com.google.code.gson:gson:2.8.0'
-    providedCompile 'com.alibaba:fastjson:1.2.31'
-//    providedCompile 'com.alibaba:fastjson:1.1.56.android'
+    compileOnly 'org.json:json:20160810'
+    compileOnly 'com.google.code.gson:gson:2.8.0'
+    compileOnly 'com.alibaba:fastjson:1.2.31'
+    compileOnly 'com.squareup.moshi:moshi:1.4.0'
+
     compile 'com.squareup.okhttp3:okhttp:3.4.0'
+    testCompile 'org.json:json:20160810'
+    testCompile 'com.google.code.gson:gson:2.8.0'
+    testCompile 'com.alibaba:fastjson:1.2.31'
+    testCompile 'com.squareup.moshi:moshi:1.4.0'
 }
 
 apply from: 'bintray.gradle'
