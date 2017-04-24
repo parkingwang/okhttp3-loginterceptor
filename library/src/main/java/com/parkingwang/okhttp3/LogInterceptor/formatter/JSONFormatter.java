@@ -23,7 +23,7 @@ public class JSONFormatter {
     }
 
     private static JSONFormatter findJSONFormatter() {
-        JSONFormatter jsonFormatter = JsonFormatter.buildIfSupported();
+        JSONFormatter jsonFormatter = OrgJsonFormatter.buildIfSupported();
         if (jsonFormatter != null) {
             return jsonFormatter;
         }

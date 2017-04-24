@@ -2,14 +2,14 @@ package com.parkingwang.okhttp3.LogInterceptor.formatter;
 
 import org.json.JSONObject;
 
-class JsonFormatter extends JSONFormatter {
+class OrgJsonFormatter extends JSONFormatter {
 
     private static final int INDENT_SPACES = 4;
 
-    static JsonFormatter buildIfSupported() {
+    static OrgJsonFormatter buildIfSupported() {
         try {
             Class.forName("org.json.JSONObject");
-            return new JsonFormatter();
+            return new OrgJsonFormatter();
         } catch (ClassNotFoundException ignore) {
             return null;
         }
