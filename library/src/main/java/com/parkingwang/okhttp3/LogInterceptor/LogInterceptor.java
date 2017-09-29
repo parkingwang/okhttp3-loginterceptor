@@ -24,16 +24,24 @@ import okio.Buffer;
 import okio.BufferedSource;
 
 public class LogInterceptor implements Interceptor {
-    private static final Charset UTF8 = Charset.forName("UTF-8");
 
+    private static final Charset UTF8 = Charset.forName("UTF-8");
     private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
 
-    private final Logger logger = new Logger() {
-        @Override
-        public void log(String message) {
-            Platform.get().log(Platform.WARN, message, null);
-        }
-    };
+    private final Logger logger;
+
+    public LogInterceptor() {
+        this(new Logger() {
+            @Override
+            public void log(String message) {
+                Platform.get().log(Platform.WARN, message, null);
+            }
+        });
+    }
+
+    public LogInterceptor(Logger logger) {
+        this.logger = logger;
+    }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -185,7 +193,7 @@ public class LogInterceptor implements Interceptor {
         return contentEncoding != null && !contentEncoding.equalsIgnoreCase("identity");
     }
 
-    interface Logger {
+    public interface Logger {
         void log(String message);
     }
 }
